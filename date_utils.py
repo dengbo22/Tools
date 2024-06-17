@@ -13,6 +13,18 @@ def past_n_months(venus_month_ds, month_cnt=0, output_format="%Y%m"):
     ds = datetime.strptime(month_ds, "%Y%m") + relativedelta(months=month_cnt)
     return ds.strftime(output_format)
 
+def past_n_months(venus_month_ds, month_cnt=0, output_format="%Y%m"):
+    month_ds = str(venus_month_ds)[:6]
+
+    date_ds = datetime.strptime(month_ds, "%Y%m")
+    total_month = date_ds.year * 12 + date_ds.month - month_cnt
+    new_year, new_month = total_month // 12, total_month % 12
+    if new_month == 0:
+        new_year, new_month = new_year - 1, 12
+
+    new_ds = datetime(new_year, new_month, 1, 0, 0)
+    return new_ds.strftime(output_format)
+
 
 # 获取每个月的最后一天.
 def month_last_date(venus_month_ds, output_format="%Y%m%d"):
