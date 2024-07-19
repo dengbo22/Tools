@@ -17,7 +17,7 @@ def past_n_months(venus_month_ds, month_cnt=0, output_format="%Y%m"):
     month_ds = str(venus_month_ds)[:6]
 
     date_ds = datetime.strptime(month_ds, "%Y%m")
-    total_month = date_ds.year * 12 + date_ds.month - month_cnt
+    total_month = date_ds.year * 12 + date_ds.month + month_cnt
     new_year, new_month = total_month // 12, total_month % 12
     if new_month == 0:
         new_year, new_month = new_year - 1, 12
